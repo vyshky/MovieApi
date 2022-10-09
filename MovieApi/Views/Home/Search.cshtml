@@ -1,0 +1,110 @@
+﻿@{
+	ViewData["Title"] = "Search";
+}
+@model SearchViweModel
+
+@if (Model.Title != null)
+{
+	<h1>Search results by title : @Model.Title</h1>
+	<small>Total result : @Model.TotalResults</small>
+	<div class="row">
+		@foreach (var item in @Model.Movies)
+		{
+			@*<div class="card col-4">
+	<img class="card-img-top" src="@item.Poster" alt="...">
+	<div class="card-body">
+	<h5 class="card-title">@item.Title</h5>
+	<p class="card-text">@item.Year</p>*@
+			@*То есть сначало отрабатывает вьюшка ,а потом котроллер для поиска по id*@
+			@*	<a asp-controller="Home" asp-action="Movie" asp-route-id="@item.imdbID" class="btn btn-primary">Show Movie</a>
+	</div>
+	</div>*@
+			<div class="col-md-4">
+				<partial name="_MovieCardPartial" model="item" />
+			</div>
+		}
+
+	</div>
+	<nav aria-label="Page navigation example" class="d-flex align-centr-center ">
+		<ul class="pagination">
+			@if (Model.CurrentPage > 1)
+			{
+				<li class="page-item">
+					<a class="page-link"
+			   asp-action="Search"
+			   asp-controller="Home"
+			   asp-route-title="@Model.Title"
+			   asp-route-page="@(Model.CurrentPage - 1)">Previous</a>
+				</li>
+			}
+
+			@*@for (var i = 1; i <= Model.TotalPages; ++i)
+		{
+		@if (Model.CurrentPage == i)
+		{
+		<li class="page-item active">
+		<a class="page-link"
+		asp-action="Search"
+		asp-controller="Home"
+		asp-route-title="@Model.Title"
+		asp-route-page="@i">@i</a>
+		</li>
+		}
+		else
+		{
+		<li class="page-item">
+		<a class="page-link"
+		asp-action="Search"
+		asp-controller="Home"
+		asp-route-title="@Model.Title"
+		asp-route-page="@i">@i</a>
+		</li>
+		}
+		}*@
+
+			@for (var i = Model.CurrentPage - 5; i <= Model.CurrentPage + 5; ++i)
+			{
+				@if (i > 0 && i <= Model.TotalPages)
+				{
+					@if (Model.CurrentPage == i)
+					{
+						<li class="page-item active">
+							<a class="page-link"
+			   asp-action="Search"
+			   asp-controller="Home"
+			   asp-route-title="@Model.Title"
+			   asp-route-page="@i">@i</a>
+						</li>
+					}
+					else
+					{
+						<li class="page-item">
+							<a class="page-link"
+			   asp-action="Search"
+			   asp-controller="Home"
+			   asp-route-title="@Model.Title"
+			   asp-route-page="@i">@i</a>
+						</li>
+					}
+				}
+
+			}
+
+			@if (Model.CurrentPage < Model.TotalPages)
+			{
+
+				<li class="page-item">
+					<a class="page-link"
+			   asp-action="Search"
+			   asp-controller="Home"
+			   asp-route-title="@Model.Title"
+			   asp-route-page="@(Model.CurrentPage + 1)">Next</a>
+				</li>
+			}
+		</ul>
+	</nav>
+}
+else
+{
+	<h1>Not results!</h1>
+}

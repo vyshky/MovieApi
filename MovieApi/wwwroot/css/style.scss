@@ -1,0 +1,33 @@
+﻿* {
+    /*background-color:red;*/
+}
+
+.card {
+    overflow: hidden;
+    height: 450px;
+
+    .img-container {
+        height: 250px;
+        position: relative;
+
+        img {
+            height: 250px;
+            object-fit: contain;
+            position:relative;
+            z-index:1;
+        }
+
+        .img-blur {
+            height: 250px;
+            filter: blur(5px);
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            left: 0px;
+            bottom: 0px;
+        }
+    }
+}

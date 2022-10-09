@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    background-image: url(/../images/background.png);    
+    /*position: relative;*/
+    /*min-height: 100%;*/
+}
+
+body {
+    background-image: url(/../images/background2.png);
+    margin-bottom: 60px;
+    /*min-width: 550px;*/
+}
+
+img {
+    width: 150px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.container2 {
+    /* выровнять блок по центру относительно контейнера в котом он находится */
+    margin-left: auto;
+    margin-right: auto;
+    /* -------------------------------------------------- */
+    /* Установить размер в % от размера body */
+    width: 50%;
+}

@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Movie Search</h1>
+</div>
+
+<form asp-action="Search" asp-controller="Home" method="get" class="input-group mb-3">
+        <input required name="title" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+@Html.MovieLink()
+@Html.EmailLink("vyshky@gmail.com","email")
+<Movie asp-email="vyshky2@gmal.com" asp-title="email"></Movie>
+<a asp-email="ssssss" asp-title="tagA email"></a>
+
+
+@*<a asp-action="Privacy" asp-controller="Home">Privacy</a>*@
+
+
+@*Выполняется в конце layout*@
+@section Scripts{ 
+    <script>       
+        $('h1').click(function () {
+            $(this).text("Clicked!");
+        });
+    </script>
+}

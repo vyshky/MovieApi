@@ -1,0 +1,42 @@
+﻿@model Movie
+
+
+<div class="card">
+	@*@if (Model.Plot == null)
+	{
+	<a asp-action="Movie" asp-controller="Home" asp-route-id="@Model.imdbID">
+	<img src="@Model.Poster" class="card-img-top" alt="...">
+	</a>
+	}
+	else{*@
+	@*<img src="@(Model.Poster == "N/A" ? "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg" : Model.Poster)" class="card-img-top" alt="...">*@
+	@*<img src="@Model.Poster" class="card-img-top" alt="...">*@
+	@*	<img src="@Model.Poster" onerror="event.target.src='https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'" class="card-img-top" alt="...">
+	}*@
+
+	<div class="img-container">
+		<div class="img-blur" style="background-image:url('@Model.Poster')"></div>
+		<img src="@Model.Poster" class="card-img-top" alt="...">
+	</div>
+
+	<div class="card-body">
+		<h5 class="card-title">@Model.Title</h5>
+		<p class="card-text">@Model.Year.</p>
+		@if (Model.Plot == null)
+		{
+			<movie-datail movie="@Model"></movie-datail>
+			@*<a asp-action="Movie" asp-controller="Home" asp-route-id="@Model.imdbID" class="btn btn-primary">Show Movie</a>*@
+		}
+	</div>
+</div>
+
+
+@section Scripts{
+	<script>
+
+		$('img').on('error', function () {
+			$(this).attr('src', '/images/errorImg.png');
+			console.log("Error");
+		});
+	</script>
+}
